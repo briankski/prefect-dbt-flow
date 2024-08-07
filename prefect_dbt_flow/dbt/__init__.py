@@ -29,6 +29,7 @@ class DbtProject:
     name: str
     project_dir: Union[str, Path]
     profiles_dir: Union[str, Path]
+    working_dir: Union[str, Path] 
 
 
 @dataclass

@@ -43,7 +43,7 @@ def dbt_ls(
         if dag_options.vars:
             dbt_ls_cmd.extend(["--vars", f"'{json.dumps(dag_options.vars)}'"])
 
-    return cmd.run(" ".join(dbt_ls_cmd))
+    return cmd.run(" ".join(dbt_ls_cmd), working_dir=str(project.working_dir))
 
 
 def dbt_run(
@@ -76,7 +76,7 @@ def dbt_run(
         if dag_options.vars:
             dbt_run_cmd.extend(["--vars", f"'{json.dumps(dag_options.vars)}'"])
 
-    return cmd.run(" ".join(dbt_run_cmd))
+    return cmd.run(" ".join(dbt_run_cmd), working_dir=str(project.working_dir))
 
 
 def dbt_test(
@@ -109,7 +109,7 @@ def dbt_test(
         if dag_options.vars:
             dbt_test_cmd.extend(["--vars", f"'{json.dumps(dag_options.vars)}'"])
 
-    return cmd.run(" ".join(dbt_test_cmd))
+    return cmd.run(" ".join(dbt_test_cmd), working_dir=str(project.working_dir))
 
 
 def dbt_seed(
@@ -142,7 +142,7 @@ def dbt_seed(
         if dag_options.vars:
             dbt_seed_cmd.extend(["--vars", f"'{json.dumps(dag_options.vars)}'"])
 
-    return cmd.run(" ".join(dbt_seed_cmd))
+    return cmd.run(" ".join(dbt_seed_cmd), working_dir=str(project.working_dir))
 
 
 def dbt_snapshot(
@@ -175,7 +175,7 @@ def dbt_snapshot(
         if dag_options.vars:
             dbt_snapshot_cmd.extend(["--vars", f"'{json.dumps(dag_options.vars)}'"])
 
-    return cmd.run(" ".join(dbt_snapshot_cmd))
+    return cmd.run(" ".join(dbt_snapshot_cmd), working_dir=str(project.working_dir))
 
 
 def dbt_deps(
@@ -205,4 +205,4 @@ def dbt_deps(
         if dag_options.vars:
             dbt_deps_cmd.extend(["--vars", f"'{json.dumps(dag_options.vars)}'"])
 
-    return cmd.run(" ".join(dbt_deps_cmd))
+    return cmd.run(" ".join(dbt_deps_cmd), working_dir=str(project.working_dir))

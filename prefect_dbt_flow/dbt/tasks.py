@@ -215,6 +215,7 @@ def generate_tasks_dag(
     dag_options: Optional[DbtDagOptions],
     dbt_graph: List[DbtNode],
     run_test_after_model: bool = False,
+    task_kwargs: Optional[Dict] = None,
 ) -> None:
     """
     Generate a Prefect DAG for running and testing dbt models.
@@ -230,13 +231,13 @@ def generate_tasks_dag(
         None
     """
 
-    # TODO: refactor this
     all_tasks = {
         dbt_node.unique_id: RESOURCE_TYPE_TO_TASK[dbt_node.resource_type](
             project=project,
             profile=profile,
             dag_options=dag_options,
             dbt_node=dbt_node,
+            task_kwargs=task_kwargs,
         )
         for dbt_node in dbt_graph
     }
@@ -256,6 +257,7 @@ def generate_tasks_dag(
                 profile=profile,
                 dag_options=dag_options,
                 dbt_node=node,
+                task_kwargs=task_kwargs,
             )
             test_task_future = test_task.submit(wait_for=run_task_future)
 
