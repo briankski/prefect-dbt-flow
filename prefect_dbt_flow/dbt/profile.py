@@ -1,4 +1,5 @@
 """Logic to override dbt profiles.yml"""
+
 from contextlib import contextmanager
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -62,6 +63,7 @@ def override_profile(
             name=project.name,
             project_dir=project.project_dir,
             profiles_dir=tmp_profiles_dir,
+            working_dir=project.working_dir,
         )
 
 
